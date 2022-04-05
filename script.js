@@ -28,7 +28,7 @@ function newQuote() {
   authorProfileThumbnail.classList.remove("show");
   // Pick a random quote from apiQuotes array
   const quote = apiQuotes[Math.floor(Math.random() * apiQuotes.length)];
-  //   console.log(quote);
+
   // Check if Author field is blank and replace it with 'Unknown'
   if (!quote.author) {
     authorText.textContent = "Unknown";
@@ -69,13 +69,17 @@ const getInformation = async (author) => {
       .then((result) => {
         const data = result.query.pages;
         const pageIds = Object.keys(result);
+        // Check if wikipedia page is found
         if (pageIds.length) {
           const pageId = pageIds[0];
           const data = result[pageId];
           const url = data.fullurl;
+          //   Set wikipedia url
           authorText.href = url;
           const thumbnail = data.thumbnail;
+          //   Check if thumbnail is available
           if (thumbnail) {
+            //   Set author profile thumbnail
             const source = thumbnail.source;
             authorProfileThumbnail.src = source;
             authorProfileThumbnail.classList.add("show");
