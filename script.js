@@ -53,7 +53,7 @@ function newQuote() {
 const getInformation = async (author) => {
   loading();
   author = author.replaceAll(" ", "%20");
-  const apiUrl = `http://en.wikipedia.org/w/api.php?action=query&titles=${author}&prop=pageimages|info&inprop=url&format=json&pithumbsize=100`;
+  const apiUrl = `https://en.wikipedia.org/w/api.php?action=query&titles=${author}&prop=pageimages|info&inprop=url&format=json&pithumbsize=100`;
   //const apiUrl = "http://localhost:3000/wiki"
   try {
     await fetch(apiUrl, {
