@@ -54,7 +54,7 @@ const getInformation = async (author) => {
   loading();
   author = author.replaceAll(" ", "%20");
   const apiUrl = `https://en.wikipedia.org/w/api.php?action=query&titles=${author}&prop=pageimages|info&inprop=url&format=json&pithumbsize=100`;
-  //const apiUrl = "http://localhost:3000/wiki"
+  //   const apiUrl = "http://localhost:3000/wiki";
   try {
     await fetch(apiUrl, {
       method: "post",
@@ -68,15 +68,16 @@ const getInformation = async (author) => {
       .then((response) => response.json())
       .then((result) => {
         const data = result.query.pages;
-        const pageIds = Object.keys(result);
+        const pageIds = Object.keys(data);
         // Check if wikipedia page is found
         if (pageIds.length) {
           const pageId = pageIds[0];
-          const data = result[pageId];
-          const url = data.fullurl;
+          const info = data[pageId];
+          console.log(info);
+          const url = info.fullurl;
           //   Set wikipedia url
           authorText.href = url;
-          const thumbnail = data.thumbnail;
+          const thumbnail = info.thumbnail;
           //   Check if thumbnail is available
           if (thumbnail) {
             //   Set author profile thumbnail
