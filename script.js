@@ -53,8 +53,8 @@ function newQuote() {
 const getInformation = async (author) => {
   loading();
   author = author.replaceAll(" ", "%20");
-  const apiUrl = `https://en.wikipedia.org/w/api.php?action=query&titles=${author}&prop=pageimages|info&inprop=url&format=json&pithumbsize=100`;
-  //   const apiUrl = "http://localhost:3000/wiki";
+  // const apiUrl = `https://en.wikipedia.org/w/api.php?action=query&titles=${author}&prop=pageimages|info&inprop=url&format=json&pithumbsize=100`;
+  const apiUrl = "http://localhost:3000/wiki";
   try {
     await fetch(apiUrl, {
       method: "post",
@@ -73,7 +73,7 @@ const getInformation = async (author) => {
         if (pageIds.length) {
           const pageId = pageIds[0];
           const info = data[pageId];
-          console.log(info);
+          // console.log(info);
           const url = info.fullurl;
           //   Set wikipedia url
           authorText.href = url;
